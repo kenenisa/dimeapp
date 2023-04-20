@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../view/activity/activity.dart';
-import '../../view/more/more.dart';
 import '../../view/plans/plans.dart';
 import '../../view/wallet/wallet.dart';
 
@@ -18,7 +17,7 @@ class _HomeState extends State<Home> {
     const WalletScreen(),
     const ActivityScreen(),
     const PlansScreen(),
-    const MoreScreen(),
+    const Center(child: Text('More')),
   ];
 
   int _selectedIndex = 0;
@@ -31,7 +30,10 @@ class _HomeState extends State<Home> {
     final ColorScheme colorScheme = theme.colorScheme;
 
     return Scaffold(
-        body: screens[_selectedIndex],
+        body: PageStorage(
+          bucket: bucket,
+          child: _selectedScreen,
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.of(context).pushNamed('/scan');
