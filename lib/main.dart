@@ -41,6 +41,7 @@ Future<void> main() async {
   var dbPath = (await getApplicationDocumentsDirectory()).path;
   Hive.init(dbPath);
   await Hive.openBox('main');
+  //Hive.box('main').clear(); <- Use this to test KENI
   runApp(MyApp());
 }
 
