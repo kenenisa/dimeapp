@@ -46,6 +46,8 @@ dependencies:
   provider: ^6.0.5
   bloc: ^8.1.1
   flutter_bloc: ^8.1.2
+  asn1lib: ^1.1.0
+  fast_rsa: ^3.4.7
 
 dev_dependencies:
   flutter_test:
