@@ -5,16 +5,18 @@ import 'package:hive/hive.dart';
 import 'package:nuvio/core/common/keypad.dart';
 
 class ChangePasscode extends StatefulWidget {
-  ChangePasscode({super.key});
+  ChangePasscode({this.goToHome = false, super.key});
+  final bool goToHome;
   final TextEditingController _cnt = TextEditingController();
 
   @override
   State<ChangePasscode> createState() =>
-      _ChangePasscodeState(_cnt, KeyPad(_cnt));
+      _ChangePasscodeState(goToHome, _cnt, KeyPad(_cnt));
 }
 
 class _ChangePasscodeState extends State<ChangePasscode> {
-  _ChangePasscodeState(this._cnt, this._keyPad);
+  final bool _goToHome;
+  _ChangePasscodeState(this._goToHome, this._cnt, this._keyPad);
   bool _show = false;
   String _pass = "";
   final KeyPad _keyPad;
@@ -68,12 +70,16 @@ class _ChangePasscodeState extends State<ChangePasscode> {
                   child: const Text("Change Passcode"),
                   onPressed: () {
                     _box.put('password', _pass);
-                    showDialog(
-                        barrierDismissible: true,
-                        context: context,
-                        builder: (_) => const SimpleDialog(
-                              title: Text("Passcode changed!"),
-                            ));
+                    if (!_goToHome) {
+                      showDialog(
+                          barrierDismissible: true,
+                          context: context,
+                          builder: (_) => const SimpleDialog(
+                                title: Text("Passcode changed!"),
+                              ));
+                    } else {
+                      Navigator.of(context).pushNamed('/home');
+                    }
                   }),
             )
           ],

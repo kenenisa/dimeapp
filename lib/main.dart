@@ -42,6 +42,7 @@ Future<void> main() async {
   var dbPath = (await getApplicationDocumentsDirectory()).path;
   Hive.init(dbPath);
   await Hive.openBox('main');
+  print(Hive.box('main').toMap());
   await Hive.box('main').clear(); //<- Use this to test KENI
   runApp(MyApp());
 }
@@ -120,6 +121,9 @@ class MyApp extends StatelessWidget {
                   case '/change_pass':
                     return MaterialPageRoute(
                         builder: (context) => ChangePasscode());
+                  case '/change_pass_intro':
+                    return MaterialPageRoute(
+                        builder: (context) => ChangePasscode(goToHome: true));
                   case '/withdraw':
                     return MaterialPageRoute(
                         builder: (context) => WithdrawView());
