@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:nuvio/blocs/balance_bloc.dart';
+import 'package:nuvio/blocs/keys_bloc.dart';
 import 'package:nuvio/core/common/QrWidget.dart';
 import 'package:nuvio/view/qr/qr.dart';
+import 'package:provider/provider.dart';
 
 class MyQr extends StatefulWidget {
-  MyQr(
-    this._myName,
-    this._myHash,
-    this._myAmmount, {
+  MyQr({
     super.key,
   });
 
-  final String _myName;
-  final String _myHash;
-  final String _myAmmount;
-
   @override
-  State<MyQr> createState() => _MyQrState(_myName, _myHash, _myAmmount);
+  State<MyQr> createState() => _MyQrState();
 }
 
 class _MyQrState extends State<MyQr> {
-  final String _myName;
-  final String _myHash;
-  final String _myAmmount;
-  _MyQrState(this._myName, this._myHash, this._myAmmount);
+  _MyQrState();
   String _hideHalf(String s) {
     List<String> newStr = s.split('');
     for (int i = newStr.length - 3; i >= 2; i--) {
@@ -33,6 +26,11 @@ class _MyQrState extends State<MyQr> {
 
   @override
   Widget build(BuildContext context) {
+    final String _myName = "Nablox";
+    final String _myHash =
+        (Provider.of<KeyBloc>(context, listen: false)).publicKey;
+    final String _myAmmount =
+        (Provider.of<BalanceBloc>(context, listen: false)).state.toString();
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
