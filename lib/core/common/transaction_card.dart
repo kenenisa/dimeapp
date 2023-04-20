@@ -4,7 +4,7 @@ enum TransactionType { sent, received }
 
 class TransactionCard extends StatelessWidget {
   final TransactionType transaction;
-  final double amount;
+  final String amount;
   final String date;
   final String message;
 

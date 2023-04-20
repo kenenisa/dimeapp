@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'data/data.dart';
 import 'widgets/plan_card.dart';
 
 class PlansScreen extends StatelessWidget {
@@ -38,15 +39,31 @@ class PlansScreen extends StatelessWidget {
       backgroundColor: colorScheme.background,
       body: SizedBox(
         height: height,
-        child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return const PlanCard(
-              title: 'New York',
-              category: 'Travel',
-              current: 160,
-              budget: 200,
-            );
+        child: FutureBuilder(
+          future: getPlans(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final List<Plan>? plans = snapshot.data;
+              return ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return PlanCard(
+                    title: plans![index].name,
+                    category: plans[index].category,
+                    current: int.parse(plans[index].balance),
+                    budget: int.parse(plans[index].budget),
+                  );
+                },
+              );
+            } else if (snapshot.hasError) {
+              return const Center(
+                child: Text('Error'),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
           },
         ),
       ),

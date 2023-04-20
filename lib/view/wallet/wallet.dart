@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart';
 
 import '../../core/common/transaction_card.dart';
+import '../../core/common/transaction_list.dart';
 import 'widgets/circle_icon_button.dart';
 import 'widgets/small_plan_card.dart';
 
@@ -247,21 +248,9 @@ class _WalletScreenState extends State<WalletScreen> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Expanded(
-                      //TODO: make the list scrollable till to the top of lower container
-                      child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: 5,
-                        itemBuilder: (context, index) {
-                          return const TransactionCard(
-                            transaction: TransactionType.received,
-                            amount: 100,
-                            message: 'Receive to John Doe',
-                            date: 'Today, 12:00 PM',
-                          );
-                        },
-                      ),
-                    ),
+                    const Expanded(
+                        //TODO: make the list scrollable till to the top of lower container
+                        child: TransactionList()),
                   ],
                 ),
               ),

@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         body: PageStorage(
           bucket: bucket,
-          child: _selectedScreen,
+          child: screens[_selectedIndex],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
