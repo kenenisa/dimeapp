@@ -1,6 +1,4 @@
 import 'package:fast_rsa/fast_rsa.dart';
-import 'package:nuvio/blocs/keys_bloc.dart';
-import 'package:provider/provider.dart';
 
 String uniqueTransactionToken() {
   return DateTime.now().millisecondsSinceEpoch.toString();
@@ -9,8 +7,9 @@ String uniqueTransactionToken() {
 Future<String> generateSignature(
     {required String publicAddress,
     required String receiverAddress,
-    required double amount}) async {
-  final sig_data = {
+    required double amount,
+    required String privateKey}) async {
+  final sigData = {
     'publicAddress': publicAddress,
     'receiverAddress': receiverAddress,
     'amount': amount,
@@ -18,15 +17,13 @@ Future<String> generateSignature(
     'uniqueTransactionToken': uniqueTransactionToken(),
   };
 
-  final sig_hashed = await RSA.hash(sig_data.toString(), Hash.SHA256);
+  final sigHashed = await RSA.hash(sigData.toString(), Hash.SHA256);
 
-  var privateKey = Provider.of<KeyBloc>(context, listen: false);
-
-  final sig_encrypted = await RSA.encryptPKCS1v15(
-    sig_hashed,
+  final sigEncrypted = await RSA.encryptPKCS1v15(
+    sigHashed,
     privateKey,
   );
 
-  final signature = RSA.base64(sig_encrypted);
+  final signature = RSA.base64(sigEncrypted);
   return signature;
 }
