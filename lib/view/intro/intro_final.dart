@@ -38,6 +38,7 @@ class IntroFinal extends StatelessWidget {
           children: [
             DimeButton(
               onTap: () {
+                generateKeyPair();
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                     builder: (context) => const Home(),
