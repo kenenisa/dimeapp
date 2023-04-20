@@ -4,11 +4,13 @@ import 'package:flutter/services.dart';
 import '../../core/common/appbar.dart';
 import '../../core/common/button.dart';
 import '../../core/common/transaction_list.dart';
+import 'data/data.dart';
 import 'widgets/plan_card.dart';
 import 'widgets/plan_header.dart';
 
 class PlanDetailScreen extends StatelessWidget {
-  const PlanDetailScreen({super.key});
+  const PlanDetailScreen({super.key, required this.plan});
+  final Plan plan;
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +26,16 @@ class PlanDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const PlanHeader(
-              title: 'Plan Title',
-              category: 'Category',
-              date: 'September 20, 2021',
+            PlanHeader(
+              title: plan.name,
+              category: plan.category,
+              date: plan.duration,
             ),
-            const PlanCard(
-              title: '300 credits',
+            PlanCard(
+              title: '${plan.budget} credits left',
               category: 'Budget',
-              current: 100,
-              budget: 200,
+              current: int.parse(plan.balance),
+              budget: int.parse(plan.budget),
             ),
             const SizedBox(height: 10),
             DimeButton(

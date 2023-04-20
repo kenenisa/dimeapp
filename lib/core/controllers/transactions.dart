@@ -12,6 +12,7 @@ Future<TransactionsModel> getTransactions(String address) async {
     final response = await http.get(url);
     if (response.statusCode == 200) {
       return TransactionsModel.fromJson(jsonDecode(response.body));
+      print(response.body);
     } else {
       throw Exception('Failed to load transactions');
     }

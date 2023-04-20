@@ -70,7 +70,9 @@ class _MoreScreenState extends State<MoreScreen> {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, '/vote');
+              },
               child: Container(
                 decoration: BoxDecoration(
                   border: Border(
@@ -102,7 +104,9 @@ class _MoreScreenState extends State<MoreScreen> {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, '/backup');
+              },
               child: Container(
                 decoration: BoxDecoration(
                   border: Border(

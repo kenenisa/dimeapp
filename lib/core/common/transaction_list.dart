@@ -40,8 +40,13 @@ class TransactionList extends StatelessWidget {
                   '12355fb20a3a7986dd45af8ce95323d99fd5979ad50fbed3981da8a04b66b144'),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
+                  final TransactionsModel transactionsList =
+                      snapshot.data as TransactionsModel;
+
                   final List<Transactions>? transactions =
-                      snapshot.data?.transactions;
+                      transactionsList.transactions;
+
+                  //Todo: Change this to transactionsModel.transactions
                   return ListView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: 15,

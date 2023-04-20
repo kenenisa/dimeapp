@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
+import '../data/data.dart';
+import '../plan_detail.dart';
+
 class PlanCard extends StatelessWidget {
   const PlanCard({
     super.key,
@@ -17,10 +20,17 @@ class PlanCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double percent = (current / budget) * 100;
+    final double percent = (budget / current) * 100;
     final double width = MediaQuery.of(context).size.width;
     final ThemeData theme = Theme.of(context);
     final ColorScheme colorScheme = theme.colorScheme;
+    final Plan plan = Plan(
+        id: '',
+        name: title,
+        category: category,
+        balance: current.toString(),
+        budget: budget.toString(),
+        duration: '1 month');
 
     final Color _color = percent > 40
         ? percent > 70
@@ -35,7 +45,12 @@ class PlanCard extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, '/plan_details');
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PlanDetailScreen(plan: plan),
+            ),
+          );
         },
         child: Container(
           width: width,
@@ -76,17 +91,17 @@ class PlanCard extends StatelessWidget {
                 animation: true,
                 animationDuration: 1000,
                 leading: Text(
-                  current.toString(),
+                  budget.toString(),
                   style: const TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 alignment: MainAxisAlignment.spaceBetween,
                 trailing: Text(
-                  budget.toString(),
+                  current.toString(),
                   style: TextStyle(color: colorScheme.onSurface),
                 ),
-                percent: percent / 100,
+                percent: (budget / current) * 100 / 100,
                 barRadius: const Radius.circular(50),
                 progressColor: _color,
               ),

@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget {
                   error: Colors.redAccent,
                   background: Color(0xFF0b0d0f),
                   surface: Color(0xFF101213),
-                  onSurface: Color(0xFF000000),
+                  onSurface: Color.fromARGB(255, 206, 206, 206),
                   onBackground: Color(0xFF6a6a6a),
                 ),
               ),
@@ -109,9 +109,7 @@ class MyApp extends StatelessWidget {
                     return MaterialPageRoute(
                         builder: (context) =>
                             const MyHomePage(title: 'Dime App'));
-                  case '/plan_details':
-                    return MaterialPageRoute(
-                        builder: (context) => const PlanDetailScreen());
+
                   case '/create_plan':
                     return MaterialPageRoute(
                         builder: (context) => const EditPlanScreen());

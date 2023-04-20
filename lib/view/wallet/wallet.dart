@@ -69,13 +69,6 @@ class _WalletScreenState extends State<WalletScreen> {
                     SizedBox(
                       child: Column(
                         children: [
-                          // Text(
-                          //   'Total Credit',
-                          //   style: TextStyle(
-                          //     color: colorScheme.onBackground,
-                          //     fontSize: 16,
-                          //   ),
-                          // ),
                           const SizedBox(height: 10),
                           BlocBuilder<BalanceBloc, double>(
                               builder: (context, ammount) {
@@ -264,7 +257,7 @@ class _WalletScreenState extends State<WalletScreen> {
                           itemBuilder: (context, index) {
                             return const TransactionCard(
                               transaction: TransactionType.received,
-                              amount: 100,
+                              amount: '100',
                               message: 'Receive to John Doe',
                               date: 'Today, 12:00 PM',
                             );
@@ -276,9 +269,10 @@ class _WalletScreenState extends State<WalletScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              const Expanded(
-                  //TODO: make the list scrollable till to the top of lower container
-                  child: TransactionList()),
+              const SizedBox(
+                //TODO: make the list scrollable till to the top of lower container
+                child: TransactionList(),
+              ),
             ],
           ),
         ),

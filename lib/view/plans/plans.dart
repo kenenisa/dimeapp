@@ -12,6 +12,40 @@ class PlansScreen extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     final ColorScheme colorScheme = theme.colorScheme;
     final double height = MediaQuery.of(context).size.height;
+    final List<Plan> _plans = [
+      Plan(
+        id: '1',
+        name: 'Taxi',
+        category: 'Transport',
+        duration: 'Monthly',
+        budget: '850',
+        balance: '1000',
+      ),
+      Plan(
+        id: '2',
+        name: 'Basic',
+        category: 'Food and Drinks',
+        duration: 'Monthly',
+        budget: '650',
+        balance: '1000',
+      ),
+      Plan(
+        id: '3',
+        name: 'Personal',
+        category: 'Going out',
+        duration: '2021-09-01',
+        budget: '500',
+        balance: '1000',
+      ),
+      Plan(
+        id: '4',
+        name: 'Study Materials',
+        category: 'study',
+        duration: '2021-09-01',
+        budget: '100',
+        balance: '1000',
+      ),
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -39,31 +73,15 @@ class PlansScreen extends StatelessWidget {
       backgroundColor: colorScheme.background,
       body: SizedBox(
         height: height,
-        child: FutureBuilder(
-          future: getPlans(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final List<Plan>? plans = snapshot.data;
-              return ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return PlanCard(
-                    title: plans![index].name,
-                    category: plans[index].category,
-                    current: int.parse(plans[index].balance),
-                    budget: int.parse(plans[index].budget),
-                  );
-                },
-              );
-            } else if (snapshot.hasError) {
-              return const Center(
-                child: Text('Error'),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
+        child: ListView.builder(
+          itemCount: _plans.length,
+          itemBuilder: (context, index) {
+            return PlanCard(
+              title: _plans[index].name,
+              category: _plans[index].category,
+              current: int.parse(_plans[index].balance),
+              budget: int.parse(_plans[index].budget),
+            );
           },
         ),
       ),
