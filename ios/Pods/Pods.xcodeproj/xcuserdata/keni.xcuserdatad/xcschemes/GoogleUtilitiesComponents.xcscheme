@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A64F5725956770327D080E1EB31878EE"
-               BuildableName = "GoogleUtilitiesComponents.framework"
+               BuildableName = "libGoogleUtilitiesComponents.a"
                BlueprintName = "GoogleUtilitiesComponents"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

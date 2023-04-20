@@ -1,4 +1,4 @@
-framework module mobile_scanner {
+module mobile_scanner {
   umbrella header "mobile_scanner-umbrella.h"
 
   export *
