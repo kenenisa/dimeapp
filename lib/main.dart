@@ -14,6 +14,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:nuvio/view/rec/rec.dart';
 import 'package:nuvio/view/send/send.dart';
+import 'package:nuvio/view/send/send_text.dart';
 import 'package:nuvio/view/withdrawal/with.dart';
 import 'package:provider/provider.dart';
 
@@ -41,7 +42,7 @@ Future<void> main() async {
   var dbPath = (await getApplicationDocumentsDirectory()).path;
   Hive.init(dbPath);
   await Hive.openBox('main');
-  //await Hive.box('main').clear(); //<- Use this to test KENI
+  await Hive.box('main').clear(); //<- Use this to test KENI
   runApp(MyApp());
 }
 
@@ -84,7 +85,7 @@ class MyApp extends StatelessWidget {
                   onBackground: Color(0xFF6a6a6a),
                 ),
               ),
-              initialRoute:
+              initialRoute: //'/send_text',
                   _box.containsKey('password') ? '/enter_pass' : '/intro',
               // routes: {
               //   '/home': (context) => const MyHomePage(title: 'Dime App'),
@@ -122,6 +123,11 @@ class MyApp extends StatelessWidget {
                   case '/withdraw':
                     return MaterialPageRoute(
                         builder: (context) => WithdrawView());
+                  case '/send_text':
+                    return MaterialPageRoute(builder: (context) {
+                      if (args == null) return SendText();
+                      return SendText(toHash: (args as Map)['hash'] as String);
+                    });
                   case '/deposit':
                     return MaterialPageRoute(
                         builder: (context) => DepositView());
@@ -132,7 +138,12 @@ class MyApp extends StatelessWidget {
                     return MaterialPageRoute(
                         builder: (context) => const QrView());
                   case '/send':
-                    return MaterialPageRoute(builder: (context) => Send());
+                    {}
+                    return MaterialPageRoute(builder: (context) {
+                      final hash = (args as Map)['hash'] as String;
+                      final name = (args as Map)['name'] as String;
+                      return Send(name, hash);
+                    });
                   case '/intro':
                     return MaterialPageRoute(
                         builder: (context) => const IntroView());

@@ -4,11 +4,12 @@ import 'package:nuvio/core/common/keypad.dart';
 import '../../core/common/address.dart';
 
 class Send extends StatefulWidget {
-  Send({super.key});
+  Send(this._name, this._hash, {super.key});
   final TextEditingController _cnt = TextEditingController();
+  final String _name, _hash;
 
   @override
-  State<Send> createState() => _SendState(KeyPad(_cnt), _cnt);
+  State<Send> createState() => _SendState(_name, _hash, KeyPad(_cnt), _cnt);
 }
 
 class _BottomSheet extends StatefulWidget {
@@ -109,8 +110,9 @@ class _SendState extends State<Send> {
   String _ammt = "0";
   final TextEditingController _cnt;
   final KeyPad _keypad;
+  final String _name, _hash;
 
-  _SendState(this._keypad, this._cnt);
+  _SendState(this._name, this._hash, this._keypad, this._cnt);
 
   _showConfirm(BuildContext context) {
     showModalBottomSheet(
@@ -157,13 +159,13 @@ class _SendState extends State<Send> {
                     _ammt,
                     style: _textStyle,
                   )),
-              const Expanded(
+              Expanded(
                   flex: 2,
                   child: Address(
-                      "Nabrolx",
-                      "7gb9od3b93dbn3pdneyv39vodn",
-                      SizedBox(),
-                      Text(
+                      _name,
+                      _hash,
+                      const SizedBox(),
+                      const Text(
                         "To",
                         style: TextStyle(color: Colors.white),
                       ))),

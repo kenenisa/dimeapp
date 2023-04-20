@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CircleIconButton extends StatelessWidget {
-  final Function onPressed;
+  final void Function() onPressed;
   final String text;
   final IconData icon;
   final Color color;
@@ -19,7 +19,7 @@ class CircleIconButton extends StatelessWidget {
     final ColorScheme colorScheme = theme.colorScheme;
 
     return MaterialButton(
-      onPressed: () {},
+      onPressed: onPressed,
       child: Column(
         children: [
           Container(

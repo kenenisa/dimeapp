@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -106,13 +107,19 @@ class _WalletScreenState extends State<WalletScreen> {
                             color: Colors.white,
                           ),
                           CircleIconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              debugPrintThrottled('going to my qr');
+                              Navigator.of(context).pushNamed('/send_text');
+                            },
                             text: 'Send',
                             icon: Icons.arrow_upward,
                             color: const Color(0xFFb2d0ce),
                           ),
                           CircleIconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              debugPrintThrottled('going to my qr');
+                              Navigator.of(context).pushNamed('/my_qr');
+                            },
                             text: 'Receive',
                             icon: Icons.arrow_downward,
                             color: colorScheme.secondary,
