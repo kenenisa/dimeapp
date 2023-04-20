@@ -23,7 +23,7 @@ class DimeButton extends StatelessWidget {
         vertical: 10,
       ),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () => onTap(),
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
           shape: RoundedRectangleBorder(
