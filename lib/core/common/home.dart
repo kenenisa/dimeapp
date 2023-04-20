@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
   ];
 
   int _selectedIndex = 0;
-  Widget _selectedScreen = const Center(child: Text('Wallet'));
+  Widget _selectedScreen = const WalletScreen();
   final PageStorageBucket bucket = PageStorageBucket();
 
   @override
