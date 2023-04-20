@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/common/button.dart';
+
 class _IntroPage extends StatelessWidget {
   const _IntroPage(
       this._title, this._details, this._btnText, this._img, this._onBtn,
@@ -82,13 +84,11 @@ class _IntroPage extends StatelessWidget {
             child: FractionallySizedBox(
           heightFactor: 0.6,
         )),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromRGBO(10, 200, 100, 1),
-              minimumSize: Size(mq.size.width, 60)),
-          child: Text(_btnText),
-          onPressed: _onBtn as void Function(),
-        )
+        DimeButton(
+          onTap: _onBtn,
+          text: _btnText,
+          color: Theme.of(context).colorScheme.secondary,
+        ),
       ],
     );
   }
