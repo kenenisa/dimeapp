@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:nuvio/core/common/QrWidget.dart';
-import 'package:nuvio/view/Qr/qr.dart';
+import 'package:nuvio/view/qr/qr.dart';
 import 'package:nuvio/view/deposit/deposit.dart';
 import 'package:nuvio/view/intro/intro.dart';
 import 'package:nuvio/view/intro/intro_final.dart';
@@ -41,6 +41,7 @@ Future<void> main() async {
   var dbPath = (await getApplicationDocumentsDirectory()).path;
   Hive.init(dbPath);
   await Hive.openBox('main');
+  //await Hive.box('main').clear(); //<- Use this to test KENI
   runApp(MyApp());
 }
 
@@ -142,9 +143,8 @@ class MyApp extends StatelessWidget {
                     return MaterialPageRoute(
                         builder: (context) => TestKeyPad());
                   case '/my_qr':
-                    return MaterialPageRoute(
-                        builder: (context) =>
-                            MyQr("Nablox", "8ye3943nyd83y83hrndoenfjn", "20"));
+                    return MaterialPageRoute(builder: (context) => MyQr());
+                  // MyQr("Nablox", "8ye3943nyd83y83hrndoenfjn", "20"));
                   default:
                     return MaterialPageRoute(builder: (context) => QrView());
                 }

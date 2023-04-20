@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nuvio/blocs/balance_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:http/http.dart';
 
 import '../../core/common/transaction_card.dart';
 import 'widgets/circle_icon_button.dart';
@@ -14,11 +18,17 @@ class WalletScreen extends StatefulWidget {
 
 class _WalletScreenState extends State<WalletScreen> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final ColorScheme colorScheme = theme.colorScheme;
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
+    final balanceBloc = Provider.of<BalanceBloc>(context, listen: false);
 
     return Scaffold(
       backgroundColor: colorScheme.background,
@@ -58,14 +68,17 @@ class _WalletScreenState extends State<WalletScreen> {
                         //   ),
                         // ),
                         const SizedBox(height: 10),
-                        const Text(
-                          '487.60',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 50,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        BlocBuilder<BalanceBloc, double>(
+                            builder: (context, ammount) {
+                          return Text(
+                            ammount.toString(),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 50,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          );
+                        }),
                         const SizedBox(height: 10),
                         Text(
                           '150.00 loan limit',

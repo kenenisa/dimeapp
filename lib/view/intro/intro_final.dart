@@ -3,6 +3,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:fast_rsa/fast_rsa.dart';
 import 'package:nuvio/blocs/keys_bloc.dart';
+import 'package:nuvio/core/common/home.dart';
+import 'package:nuvio/view/intro/service/create_account.dart';
 
 import '../../core/common/button.dart';
 
@@ -35,7 +37,14 @@ class IntroFinal extends StatelessWidget {
         child: Column(
           children: [
             DimeButton(
-              onTap: generateKeyPair,
+              onTap: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => const Home(),
+                  ),
+                  (route) => false,
+                );
+              },
               text: "Create Account",
               color: Theme.of(context).colorScheme.secondary,
             ),

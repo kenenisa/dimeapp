@@ -1,0 +1,14 @@
+{
+    "amount": 250,
+    "transactions": [
+        {
+            "publicAddress": "string",
+            "publicKey": "string",
+            "receiverAddress": "string",
+            "amount": 260,
+            "signature": "string",
+            "date": "2018-01-01T00:00:00.000Z",
+            "uniqueTransactionToken": "string"
+        }
+    ]
+}
