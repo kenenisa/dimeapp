@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:fast_rsa/fast_rsa.dart';
+import 'package:nuvio/blocs/keys_bloc.dart';
 import 'package:nuvio/core/common/home.dart';
 import 'package:nuvio/view/intro/service/create_account.dart';
 
@@ -8,6 +10,13 @@ import '../../core/common/button.dart';
 
 class IntroFinal extends StatelessWidget {
   const IntroFinal({super.key});
+
+  Future<void> generateKeyPair() async {
+    final key = await RSA.generate(2048);
+
+    SetPrivateKeyEvent(key.privateKey);
+    SetPublicKeyEvent(key.publicKey);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +38,7 @@ class IntroFinal extends StatelessWidget {
           children: [
             DimeButton(
               onTap: () {
+                generateKeyPair();
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                     builder: (context) => const Home(),
