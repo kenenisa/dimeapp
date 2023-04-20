@@ -45,11 +45,13 @@ class TransactionList extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     itemCount: 15,
                     itemBuilder: (context, index) {
-                      return const TransactionCard(
+                      return TransactionCard(
+                        //Todo: Change transaction type if receiver address is same as current user address
                         transaction: TransactionType.received,
-                        amount: 100,
-                        message: 'Receive to John Doe',
-                        date: 'Today, 12:00 PM',
+                        amount: transactions![index].amount.toString(),
+                        message:
+                            'Transaction made to ${transactions[index].receiverAddress}',
+                        date: transactions[index].date.toString(),
                       );
                     },
                   );

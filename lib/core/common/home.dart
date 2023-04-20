@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuvio/view/more/more.dart';
 
 import '../../view/activity/activity.dart';
 import '../../view/plans/plans.dart';
@@ -17,11 +18,11 @@ class _HomeState extends State<Home> {
     const WalletScreen(),
     const ActivityScreen(),
     const PlansScreen(),
-    const Center(child: Text('More')),
+    const MoreScreen(),
   ];
 
   int _selectedIndex = 0;
-  Widget _selectedScreen = const Center(child: Text('Wallet'));
+  Widget _selectedScreen = const WalletScreen();
   final PageStorageBucket bucket = PageStorageBucket();
 
   @override
@@ -32,7 +33,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         body: PageStorage(
           bucket: bucket,
-          child: _selectedScreen,
+          child: screens[_selectedIndex],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {

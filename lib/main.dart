@@ -31,8 +31,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:nuvio/view/plans/edit_plan.dart';
 
 import 'core/common/home.dart';
+import 'view/backup/backup.dart';
 import 'view/loan/loan_form.dart';
 import 'view/plans/plan_detail.dart';
+import 'view/vote/votes.dart';
 import 'view/webhook/webhook.dart';
 
 import 'dart:io';
@@ -155,6 +157,12 @@ class MyApp extends StatelessWidget {
                   case '/intro':
                     return MaterialPageRoute(
                         builder: (context) => const IntroView());
+                  case '/backup':
+                    return MaterialPageRoute(
+                        builder: (context) => const BackupScreen());
+                  case '/vote':
+                    return MaterialPageRoute(
+                        builder: (context) => const VoteScreen());
                   case '/intro_f':
                     return MaterialPageRoute(
                         builder: (context) => const IntroFinal());
