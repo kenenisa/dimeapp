@@ -85,17 +85,33 @@ class MyApp extends StatelessWidget {
               ),
               initialRoute:
                   '/home', //_box.containsKey('password') ? '/enter_pass' : '/intro',
-              routes: {
-                '/home': (context) => const MyHomePage(title: 'Dime App'),
-                '/plan_details': (context) => const PlanDetailScreen(),
-                '/create_plan': (context) => const EditPlanScreen(),
-                '/loan_form': (context) => const LoanFormScreen(),
-                '/webhook': (context) => const WebhookScreen(),
-              },
+              // routes: {
+              //   '/home': (context) => const MyHomePage(title: 'Dime App'),
+              //   '/plan_details': (context) => const PlanDetailScreen(),
+              //   '/create_plan': (context) => const EditPlanScreen(),
+              //   '/loan_form': (context) => const LoanFormScreen(),
+              //   '/webhook': (context) => const WebhookScreen(),
+              // },
               //white surface background onBackground
               onGenerateRoute: (settings) {
                 final args = settings.arguments;
                 switch (settings.name) {
+                  case '/home':
+                    return MaterialPageRoute(
+                        builder: (context) =>
+                            const MyHomePage(title: 'Dime App'));
+                  case '/plan_details':
+                    return MaterialPageRoute(
+                        builder: (context) => const PlanDetailScreen());
+                  case '/create_plan':
+                    return MaterialPageRoute(
+                        builder: (context) => const EditPlanScreen());
+                  case '/loan_form':
+                    return MaterialPageRoute(
+                        builder: (context) => const LoanFormScreen());
+                  case '/webhook':
+                    return MaterialPageRoute(
+                        builder: (context) => const WebhookScreen());
                   case '/enter_pass':
                     return MaterialPageRoute(
                         builder: (context) => EnterPasscode());
