@@ -37,13 +37,17 @@ import 'view/webhook/webhook.dart';
 
 import 'dart:io';
 
+final _balanceBloc = BalanceBloc();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   var dbPath = (await getApplicationDocumentsDirectory()).path;
   Hive.init(dbPath);
   await Hive.openBox('main');
-  print(Hive.box('main').toMap());
-  await Hive.box('main').clear(); //<- Use this to test KENI
+  print("Map+ " + Hive.box('main').get('publicKey'));
+  final _box = Hive.box('main');
+  final pk = _box.get('privateKey');
+  await _balanceBloc.init(pk == null ? "" : pk);
+  // await Hive.box('main').clear(); //<- Use this to test KENI
   runApp(MyApp());
 }
 
@@ -57,7 +61,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           Provider(
-            create: (ctx) => BalanceBloc(),
+            create: (ctx) => _balanceBloc,
           ),
           Provider(
             create: (ctx) => KeyBloc(),
