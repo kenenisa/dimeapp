@@ -26,7 +26,7 @@ class _ChangePasscodeState extends State<ChangePasscode> {
     _cnt.addListener(() {
       setState(() {
         _pass = _cnt.text;
-        _box.put('password', _pass);
+        //  _box.put('password', _pass);
       });
     });
   }
@@ -62,7 +62,20 @@ class _ChangePasscodeState extends State<ChangePasscode> {
                 },
               ),
             ),
-            Expanded(flex: 3, child: _keyPad)
+            Expanded(flex: 3, child: _keyPad),
+            Center(
+              child: TextButton(
+                  child: const Text("Change Passcode"),
+                  onPressed: () {
+                    _box.put('password', _pass);
+                    showDialog(
+                        barrierDismissible: true,
+                        context: context,
+                        builder: (_) => const SimpleDialog(
+                              title: Text("Passcode changed!"),
+                            ));
+                  }),
+            )
           ],
         ));
   }

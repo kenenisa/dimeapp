@@ -36,9 +36,11 @@ class _EnterPasscodeState extends State<EnterPasscode> {
     // if (_passNeeded == null) {
     //   Navigator.of(context).pushReplacementNamed('/intro');
     // }
-    if (_pass == _passNeeded) {
-      debugPrintThrottled("Got password");
-    }
+    // if (_pass == _passNeeded) {
+    //   debugPrintThrottled("Got password");
+    //   Navigator.of(context).pushReplacementNamed('/home');
+    //   return Scaffold();
+    // }
     final String pass = !_show ? ('*' * _pass.length) : _pass;
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
@@ -68,6 +70,23 @@ class _EnterPasscodeState extends State<EnterPasscode> {
               ),
             ),
             Expanded(flex: 4, child: _keyPad),
+            Center(
+              child: TextButton(
+                  child: const Text("Login"),
+                  onPressed: () {
+                    if (_pass == _passNeeded) {
+                      debugPrintThrottled("Got password");
+                      Navigator.of(context).pushReplacementNamed('/home');
+                    } else {
+                      showDialog(
+                          barrierDismissible: true,
+                          context: context,
+                          builder: (_) => const SimpleDialog(
+                                title: Text("Wrong Password"),
+                              ));
+                    }
+                  }),
+            ),
             Center(
               child: TextButton(
                   child: const Text("can not login ?"), onPressed: () {}),

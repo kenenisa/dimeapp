@@ -84,7 +84,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               initialRoute:
-                  '/home', //_box.containsKey('password') ? '/enter_pass' : '/intro',
+                  _box.containsKey('password') ? '/enter_pass' : '/intro',
               // routes: {
               //   '/home': (context) => const MyHomePage(title: 'Dime App'),
               //   '/plan_details': (context) => const PlanDetailScreen(),
