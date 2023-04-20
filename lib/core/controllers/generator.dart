@@ -5,10 +5,7 @@ String uniqueTransactionToken() {
 }
 
 Future<String> generateSignature(
-    {required String publicAddress,
-    required String receiverAddress,
-    required double amount,
-    required String privateKey}) async {
+    publicAddress, receiverAddress, amount, privateKey) async {
   final sigData = {
     'publicAddress': publicAddress,
     'receiverAddress': receiverAddress,

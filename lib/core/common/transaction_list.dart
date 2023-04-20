@@ -36,7 +36,8 @@ class TransactionList extends StatelessWidget {
           SizedBox(
             height: height * 0.65,
             child: FutureBuilder(
-              future: getTransactions('0x123456789'),
+              future: getTransactions(
+                  '12355fb20a3a7986dd45af8ce95323d99fd5979ad50fbed3981da8a04b66b144'),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final List<Transactions>? transactions =
